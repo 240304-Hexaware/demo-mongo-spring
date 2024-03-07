@@ -17,6 +17,7 @@ public class MyController {
 
     @Autowired
     public MyController(MyService service) {
+        System.out.println("Controller Constructor");
         this.service = service;
     }
 

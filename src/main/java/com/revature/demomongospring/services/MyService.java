@@ -11,6 +11,7 @@ public class MyService {
 
     @Autowired
     public MyService(MyRepository repository) {
+        System.out.println("Service Constructor");
         this.repository = repository;
     }
 }
