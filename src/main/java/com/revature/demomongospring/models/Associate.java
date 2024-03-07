@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 public class Associate {
     @Id
     @Column
-    private Integer id;
+    private String _id;
 
     @Column
     private String firstName;
@@ -19,8 +19,8 @@ public class Associate {
     public Associate() {
     }
 
-    public Associate(Integer id, String firstName, String lastName) {
-        this.id = id;
+    public Associate(String _id, String firstName, String lastName) {
+        this._id = _id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -30,12 +30,12 @@ public class Associate {
         this.lastName = lastName;
     }
 
-    public Integer getId() {
-        return id;
+    public String get_id() {
+        return _id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getFirstName() {
