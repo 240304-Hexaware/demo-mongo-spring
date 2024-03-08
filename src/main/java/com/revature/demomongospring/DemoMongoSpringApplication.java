@@ -20,13 +20,12 @@ public class DemoMongoSpringApplication {
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(DemoMongoSpringApplication.class, args);
 
-		MyRepository myRepository = ctx.getBean(MyRepository.class);
-		MyService myService = ctx.getBean(MyService.class);
-
-
-		//Document doc = new Document("key", "value");
-		Associate associate = new Associate("Kyle", "Plummer");
-		myRepository.save(associate);
+//		MyRepository myRepository = ctx.getBean(MyRepository.class);
+//		MyService myService = ctx.getBean(MyService.class);
+//
+//
+//		Associate associate = new Associate("Kyle", "Plummer");
+//		myRepository.save(associate);
 
 
 	}

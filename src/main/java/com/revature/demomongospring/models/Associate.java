@@ -3,24 +3,26 @@ package com.revature.demomongospring.models;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-@Entity
+@Document("associates")
 public class Associate {
-    @Id
-    @Column
-    private String _id;
+    @Field("_id")
+    private ObjectId id;
 
-    @Column
+    @Field(name = "first_name")
     private String firstName;
 
-    @Column
+    @Field(name = "last_name")
     private String lastName;
 
     public Associate() {
     }
 
-    public Associate(String _id, String firstName, String lastName) {
-        this._id = _id;
+    public Associate(ObjectId id, String firstName, String lastName) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -30,12 +32,12 @@ public class Associate {
         this.lastName = lastName;
     }
 
-    public String get_id() {
-        return _id;
+    public ObjectId getId() {
+        return id;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     public String getFirstName() {
