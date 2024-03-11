@@ -6,11 +6,14 @@ import jakarta.persistence.Id;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.FieldType;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Document("associates")
 public class Associate {
     @Field("_id")
-    private ObjectId id;
+    @MongoId(FieldType.OBJECT_ID)//helps spring understand how to utilize mongo's ID objects
+    private ObjectId id;//with that above annotation we could use String in place of ObjectId type.
 
     @Field(name = "first_name")
     private String firstName;
