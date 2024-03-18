@@ -2,20 +2,18 @@ package com.revature.demomongospring.services;
 
 import com.revature.demomongospring.exceptions.ItemNotFoundException;
 import com.revature.demomongospring.models.Associate;
-import com.revature.demomongospring.repositories.MyRepository;
+import com.revature.demomongospring.repositories.AssociateRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class MyService {
 
-    private MyRepository repository;
+    private AssociateRepository repository;
 
     @Autowired
-    public MyService(MyRepository repository) {
+    public MyService(AssociateRepository repository) {
         System.out.println("Service Constructor");
         this.repository = repository;
     }

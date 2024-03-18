@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface MyRepository extends MongoRepository<Associate, ObjectId> {//We could use String as the ID type, see Associate class
+public interface AssociateRepository extends MongoRepository<Associate, ObjectId> {//We could use String as the ID type, see Associate class
     /*
     saveOrUpdate()
     findById()

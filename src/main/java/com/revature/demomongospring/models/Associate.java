@@ -58,4 +58,6 @@ public class Associate {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+
 }
