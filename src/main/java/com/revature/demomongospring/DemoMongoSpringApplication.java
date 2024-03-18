@@ -1,10 +1,10 @@
 package com.revature.demomongospring;
 
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import com.revature.demomongospring.models.Associate;
-import com.revature.demomongospring.repositories.MyRepository;
-import com.revature.demomongospring.services.MyService;
-import org.bson.Document;
+import com.revature.demomongospring.models.GenericRecord;
+import com.revature.demomongospring.models.OtherGenericRecord;
+import com.revature.demomongospring.repositories.GenericRecordRepository;
+import com.revature.demomongospring.repositories.OtherGenericRecordRepository;
 import org.bson.types.ObjectId;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -37,13 +37,12 @@ public class DemoMongoSpringApplication {
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(DemoMongoSpringApplication.class, args);
 
-
-//		MyRepository myRepository = ctx.getBean(MyRepository.class);
-//		MyService myService = ctx.getBean(MyService.class);
-//
-//
-//		Associate associate = new Associate("Kyle", "Plummer");
-//		myRepository.save(associate);
+		OtherGenericRecordRepository repo = ctx.getBean(OtherGenericRecordRepository.class);
+		OtherGenericRecord testDoc = new OtherGenericRecord();
+		testDoc.append("manufacturer", "toyota");
+		testDoc.append("model", "camry");
+		testDoc.append("year", "2024");
+		repo.save(testDoc);
 
 
 	}
