@@ -9,6 +9,11 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This implementation of a generic mongo record object to be persisted is a little less ideal than the
+ * GenericRecord class. This will persist just fine and we can work with it, but the document will contain
+ * a map object rather than just having the key/value pairs.
+ */
 @Document("records")
 public class OtherGenericRecord {
     @Field("_id")
