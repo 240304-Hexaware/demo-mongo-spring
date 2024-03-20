@@ -9,6 +9,7 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 //  http://www.mysite.com/api/v2/users/      URL
@@ -27,7 +28,7 @@ public class MyController {
         this.service = service;
     }
 
-    @GetMapping("/ping")
+    @GetMapping(value = "/ping")
     public String ping() {
         return "pong!";
     }

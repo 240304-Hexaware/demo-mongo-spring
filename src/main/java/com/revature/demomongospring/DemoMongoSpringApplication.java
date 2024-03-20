@@ -9,6 +9,7 @@ import com.revature.demomongospring.repositories.AssociateRepository;
 import com.revature.demomongospring.repositories.GenericRecordRepository;
 import com.revature.demomongospring.repositories.OtherGenericRecordRepository;
 import com.revature.demomongospring.repositories.TrainerRepository;
+import com.revature.demomongospring.services.AggregationService;
 import org.bson.types.ObjectId;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +17,7 @@ import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilde
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +46,28 @@ public class DemoMongoSpringApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(DemoMongoSpringApplication.class, args);
+		/*
+		3/19/24 - tinkering with mongo aggregations in spring JPA with mongo
+		 */
+
+		AggregationService service = ctx.getBean(AggregationService.class);
+		List<Associate> results1 = service.findWithMongoTemplate();
+		for (Associate a : results1) {
+			System.out.println(a);
+		}
+
+		List<Associate> results2 = service.findWithMongoExpression();
+		for (Associate a : results2) {
+			System.out.println(a);
+		}
+
+		AggregationResults<Associate> results3 = service.findWithAggregation();
+		for (Associate a : results3) {
+			System.out.println(a);
+		}
+
+
+
 
 		/*
 		3/18/24: Added some demo stuff about setting up generic mongo documents with working spring repos
@@ -57,49 +81,32 @@ public class DemoMongoSpringApplication {
 
 		 */
 
-		TrainerRepository trainerRepository = ctx.getBean(TrainerRepository.class);
-		AssociateRepository associateRepository = ctx.getBean(AssociateRepository.class);
-		GenericRecordRepository genericRecordRepository = ctx.getBean(GenericRecordRepository.class);
-
-		Trainer kyle = new Trainer();//trainers contain a list of references to associates
-
-
-		Associate andrew = new Associate("Andrew", "Carvajal");
-		List<Associate> associates = new ArrayList<>();
-		associates.add(andrew);
-		kyle.setAssociates(associates);
+//		TrainerRepository trainerRepository = ctx.getBean(TrainerRepository.class);
+//		AssociateRepository associateRepository = ctx.getBean(AssociateRepository.class);
+//		GenericRecordRepository genericRecordRepository = ctx.getBean(GenericRecordRepository.class);
+//
+//		Trainer kyle = new Trainer();//trainers contain a list of references to associates
+//
+//
+//		Associate andrew = new Associate("Andrew", "Carvajal");
+//		List<Associate> associates = new ArrayList<>();
+//		associates.add(andrew);
+//		kyle.setAssociates(associates);
 
 		//The referenced associates MUST BE SAVED FIRST! This way mongo has already populated the
 		//object's id with the reference id.
-		for(Associate a : associates) {
-			associateRepository.save(a);
-		}
+//		for(Associate a : associates) {
+//			associateRepository.save(a);
+//		}
 
 		//now when we call this save on the trainer object, it should have the valid references
-		trainerRepository.save(kyle);
+//		trainerRepository.save(kyle);
 
 		//finally we see this with GenericRecords as well. In this example the testRecord references
 		//the trainer object above.
-		GenericRecord testRecord = new GenericRecord();
-		testRecord.append("reference", kyle.getId());
-		genericRecordRepository.save(testRecord);
-
-
-
-//		GenericRecord owner = new GenericRecord();
-//		owner.append("name", "Kyle");
-//
-//
-//		GenericRecord car = new GenericRecord();
-//		car.append("manufacturer", "ford");
-//		car.append("model", "taurus");
-//		car.append("year", "1997");
-//		car.append("owner", owner);
-//
-//		repo.save(car);
-//		Optional<GenericRecord> optionalResult = repo.findById(new ObjectId("65f8a905574b8279f9aa4c04"));
-//		GenericRecord result = optionalResult.get();
-//		System.out.println(result.get("owner"));
+//		GenericRecord testRecord = new GenericRecord();
+//		testRecord.append("reference", kyle.getId());
+//		genericRecordRepository.save(testRecord);
 
 
 

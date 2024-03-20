@@ -29,4 +29,6 @@ public class MyService {
     public Associate findByFirstName(String firstName) throws ItemNotFoundException{
         return repository.findByFirstName(firstName).orElseThrow(() -> new ItemNotFoundException("Query returned no result."));
     }
+
+
 }

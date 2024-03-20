@@ -59,5 +59,12 @@ public class Associate {
         this.lastName = lastName;
     }
 
-
+    @Override
+    public String toString() {
+        return "Associate{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }
